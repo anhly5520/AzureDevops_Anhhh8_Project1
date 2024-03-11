@@ -1,0 +1,7 @@
+{
+    "properties": {
+        "mode": "Indexed",
+        "displayName": "Require Tags for All Resources",
+        "description": "This policy denies the creation of resources that do not have tags."
+    }
+}

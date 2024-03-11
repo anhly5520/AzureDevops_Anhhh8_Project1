@@ -1,0 +1,32 @@
+{
+    "variables": {
+        "client_id": "{{env `AZ_CLIENT_ID`}}",
+        "client_secret": "{{env `AZ_CLIENT_SECRET`}}",
+        "subscription_id": "{{env `AZ_SUSCRIPTION_ID`}}"
+    },
+    "builders": [{
+        "type": "azure-arm",
+        "azure_tags": {
+            "name": "Ubuntu image Standard_DS1_v2 created by Packer"
+        },
+        "client_id": "{{user `client_id`}}",
+        "client_secret": "{{user `client_secret`}}",
+        "subscription_id": "{{user `subscription_id`}}",
+        "managed_image_resource_group_name": "Azuredevops",
+        "managed_image_name": "udacity-packer-image",
+        "location": "eastus",
+        "os_type": "Linux",
+        "image_publisher": "Canonical",
+        "image_offer": "UbuntuServer",
+        "image_sku": "18.04-LTS",
+        "vm_size": "Standard_DS1_v2"
+    }],
+    "provisioners": [{
+        "inline": [
+            "echo 'Hello, World!' > index.html",
+            "nohup busybox httpd -f -p 80 &"
+        ],
+        "inline_shebang": "/bin/sh -x",
+        "type": "shell"
+    }]
+}
